@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'products/new'
+  get 'products/create'
   devise_for :items
   devise_for :users
 
@@ -13,4 +15,5 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items, only: [:index, :show, :new, :create]
   resources :users, only: [:show]  # ユーザーの詳細ページを追加
+  resources :products, only: [:new, :create]
 end
