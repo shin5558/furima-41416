@@ -73,3 +73,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise'
 gem 'faker'
 gem 'faker-japanese'
+gem 'active_hash'
