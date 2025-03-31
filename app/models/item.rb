@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to :shipping_fee
   has_one_attached :image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
