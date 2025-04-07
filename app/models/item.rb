@@ -20,7 +20,7 @@ class Item < ApplicationRecord
 
   validates :prefecture_id, presence: true
 
-  validates :delivery_days_id, presence: true
+  validates :delivery_day_id, presence: true
 
   validates :price, presence: true,
                     numericality: {
@@ -56,5 +56,5 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
 
   # ジャンルの選択が「---」の時は保存できないようにする
-  validates :delivery_days_id, numericality: { other_than: 1 }
+  validates :delivery_day_id, numericality: { other_than: 1 }
 end
