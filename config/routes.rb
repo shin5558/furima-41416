@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "items#index"
-  resources :items, only: [:index, :show, :new, :create]
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :users, only: [:show]  # ユーザーの詳細ページを追加
   resources :products, only: [:new, :create]
 end
