@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:edit, :update, :show]
-  before_action :move_to_root, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :move_to_root, only: [:edit, :update, :destroy]
 
   def move_to_root
     redirect_to root_path if current_user != @item.user
@@ -47,6 +47,16 @@ class ItemsController < ApplicationController
     end
   end
   
+  def destroy
+    @item = Item.find(params[:id])
+    if current_user == @item.user
+      @item.destroy
+      redirect_to root_path, notice: '商品を削除しました'
+    else
+      redirect_to root_path, alert: '権限がありません'
+    end
+  end
+
 
   private
 
