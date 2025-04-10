@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+
   end
 
   # 編集画面表示
@@ -40,17 +40,13 @@ class ItemsController < ApplicationController
 
   # 更新処理
   def update
-    @item = Item.find(params[:id])
-    if current_user == @item.user
-      if @item.update(item_params)
-        redirect_to item_path(@item), notice: '更新が完了しました'
-      else
-        render :edit
-      end
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '更新が完了しました'
     else
-      redirect_to root_path
+      render :edit
     end
   end
+  
 
   private
 
