@@ -13,28 +13,33 @@
         <%= image_tag "item-sample.png" ,class:"item-box-img" %>
     <% end %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
+    <% if @item.order.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
+    <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        ¥ <%= number_with_delimiter(@item.price) %>
       </span>
       <span class="item-postage">
         <%= @item.shipping_fee.name %>
       </span>
     </div>
 
-  <% if user_signed_in? && current_user == @item.user %>
+  <%# ログイン状態の場合 %>
+<% if user_signed_in? %>
+  <% if current_user == @item.user && @item.order.blank? %>
     <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", item_path(@item),method: :delete, data: {turbo_method: :delete}, class:"item-destroy" %>
 
-  <% elsif user_signed_in?  && current_user != @item.user %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+  <% elsif current_user != @item.user && @item.order.blank? %>
+    <%= link_to "購入画面に進む", item_orders_path(@item), data: { turbo: false },class:"item-red-btn"%>
   <% end %>
+<% end %>
 
 
     <div class="item-explain-box">
