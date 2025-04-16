@@ -1,5 +1,3 @@
-const pay = () => {
-  // PAY.JPの公開鍵をセット
 
   const payjp =  Payjp(PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
@@ -32,9 +30,5 @@ const pay = () => {
       }
     });
   });
-
-
-
-};
 
 window.addEventListener("DOMContentLoaded", pay);

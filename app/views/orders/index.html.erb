@@ -33,10 +33,21 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= "販売価格" %>
+        ¥<%= @item.price %>
       </p>
     </div>
     <%# /支払額の表示 %>
+
+<% if @order_address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order_address.errors.count, "error") %>が発生しました:</h2>
+    <ul>
+      <% @order_address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
     <%= form_with  model: @order_address, url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>

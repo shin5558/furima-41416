@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item
-  before_action :move_to_root
+  before_action :set_item, only: [:index, :create]
+  before_action :move_to_root, only: [:index, :create]
 
   require 'payjp'
 
@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
 
     if @order_address.valid?
