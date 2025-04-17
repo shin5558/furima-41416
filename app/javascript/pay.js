@@ -1,5 +1,5 @@
-
-  const payjp =  Payjp(PAYJP_PUBLIC_KEY);
+document.addEventListener("turbo:load", () => {
+  const payjp = Payjp(PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
 
   const numberElement = elements.create('cardNumber');
@@ -20,13 +20,13 @@
         alert("カード情報が正しくありません");
       } else {
         const token = response.id;
-        const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
-        renderDom.insertAdjacentHTML("beforeend", tokenObj);
-
-        form.submit(); // トークンを埋め込んで送信
+        const tokenObj = document.createElement('input');
+        tokenObj.setAttribute('type', 'hidden');
+        tokenObj.setAttribute('name', 'token');
+        tokenObj.setAttribute('value', token);
+        form.appendChild(tokenObj);
+        form.submit();
       }
     });
   });
-
-window.addEventListener("DOMContentLoaded", pay);
+});
