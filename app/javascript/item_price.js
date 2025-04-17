@@ -1,4 +1,7 @@
-document.addEventListener('turbo:load', () => {
+document.addEventListener('DOMContentLoaded', setupPriceCalculation);
+document.addEventListener('turbo:load', setupPriceCalculation);
+
+function setupPriceCalculation() {
   const priceInput = document.getElementById("item-price");
 
   if (priceInput) {
@@ -17,4 +20,4 @@ document.addEventListener('turbo:load', () => {
       }
     });
   }
-});
+}
