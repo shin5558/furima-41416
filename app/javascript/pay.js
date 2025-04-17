@@ -1,5 +1,5 @@
 document.addEventListener("turbo:load", () => {
-
+  const payjp = Payjp(PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
 
   const numberElement = elements.create('cardNumber');
@@ -30,7 +30,7 @@ document.addEventListener("turbo:load", () => {
     });
   });
 
-
+  console.log("公開鍵：", PAYJP_PUBLIC_KEY); // デバッグ用
 
 
 
