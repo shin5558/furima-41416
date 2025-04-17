@@ -16,7 +16,7 @@
           <%= @item.name %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= number_to_currency(@item.price, unit: "", delimiter: ",") %></p>
+          <p class='item-price-text'>¥<%= number_to_currency(@item.price, unit: "", delimiter: ",", precision: 0) %></p>
           <p class='item-price-sub-text'>
             <%= @item.shipping_fee_id == 1 ? '送料込み（出品者負担）' : '着払い（購入者負担）' %>
       </p>
