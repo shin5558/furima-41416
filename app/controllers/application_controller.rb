@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :basic_auth
 
   private
 
@@ -10,6 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def basic_auth
+    return unless Rails.env.production? # 本番環境だけで適用
+
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
