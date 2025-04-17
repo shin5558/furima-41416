@@ -23,9 +23,7 @@
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-  
-        console.log("フォーム送信前: tokenを挿入しました");
- 
+
         form.submit(); // トークンを埋め込んで送信
       }
     });
