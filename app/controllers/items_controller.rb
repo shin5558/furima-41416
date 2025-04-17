@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end  
+  end
 
   def index
     @items = Item.order(created_at: :desc)
@@ -30,23 +30,27 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   # 編集画面表示
   def edit
+    # 出品者ではない場合 or 商品が購入済みの場合はトップページにリダイレクト
+    return unless current_user != @item.user || @item.order.present?
 
+    redirect_to root_path
   end
 
   # 更新処理
   def update
+    redirect_to root_path and return if current_user != @item.user || @item.order.present?
+
     if @item.update(item_params)
       redirect_to item_path(@item), notice: '更新が完了しました'
     else
       render :edit
     end
   end
-  
+
   def destroy
     if current_user == @item.user
       @item.destroy
